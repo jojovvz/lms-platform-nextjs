@@ -40,9 +40,9 @@ export default function Verify({ token }: { token: string }) {
     };
 
     return (
-        <div className='w-full flex justify-between px-[9vw]'>
+        <div className='w-full overflow-x-hidden flex justify-between md:px-[9vw] px-[1vw]'>
             <div className='w-[12vw] -z-10 h-[30vw] bg-darkblue blur-[12vw] rounded-3xl -rotate-45'></div>
-            <div className='flex justify-center items-center w-[35vw]'>
+            <div className='flex justify-center items-center md:w-[35vw]'>
                 <Card>
                     <CardHeader>
                         <CardTitle className='text-3xl text-lightblue'>Verify Your Account</CardTitle>

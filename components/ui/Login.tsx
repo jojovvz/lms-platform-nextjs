@@ -59,9 +59,9 @@ const Login = () => {
     }
 
     return (
-        <div className='w-full flex justify-between px-[9vw]'>
+        <div className='w-full overflow-x-hidden flex justify-between md:px-[9vw] px-[1vw]'>
             <div className='w-[12vw] -z-10 h-[30vw] bg-darkblue blur-[12vw] rounded-3xl -rotate-45'></div>
-            <div className='flex justify-center items-center w-[35vw] relative'>
+            <div className='flex justify-center items-center md:w-[35vw] relative'>
                 {isLoading && (
                     <div className="absolute inset-0 flex justify-center items-center dark:bg-transparent bg-white/50 z-50">
                         <Loader />
