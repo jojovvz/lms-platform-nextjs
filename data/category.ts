@@ -1,0 +1,28 @@
+const category = [
+    { title: 'web development' },
+    { title: 'mobile development' },
+    { title: 'frontend development' },
+    { title: 'backend development' },
+    { title: 'full stack development' },
+    { title: 'ui/ux design' },
+    { title: 'game development' },
+    { title: 'data science' },
+    { title: 'machine learning' },
+    { title: 'artificial intelligence' },
+    { title: 'cybersecurity' },
+    { title: 'cloud computing' },
+    { title: 'blockchain' },
+    { title: 'devops' },
+    { title: 'embedded systems' },
+    { title: 'database management' },
+    { title: 'networking' },
+    { title: 'software testing' },
+    { title: 'data engineering' },
+    { title: 'big data' },
+    { title: 'internet of things (iot)' },
+    { title: 'ar/vr development' },
+    { title: 'computer vision' },
+    { title: 'natural language processing' },
+    { title: 'quantum computing' }
+];
+export default category;
