@@ -13,6 +13,7 @@ import {
   Text,
 } from "@react-email/components";
 import * as React from "react";
+import dotenv from "dotenv";
 
 export const VerificationEmail = ({ token }: { token: string }) => {
   return (

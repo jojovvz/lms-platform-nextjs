@@ -18,7 +18,7 @@ const Header = async () => {
             <div className='flex items-center gap-2'>
                 <Link href={user ? '/dashboard' : '/login'}>
                     <Button
-                        content="Login"
+                        content={user ? "Dashboard" : "Login"}
                         secondary
                     />
                 </Link>

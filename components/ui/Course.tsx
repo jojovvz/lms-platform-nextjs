@@ -1,3 +1,5 @@
+'use client'
+
 import { 
     Card, 
     CardContent, 
@@ -8,20 +10,22 @@ import {
 } from "@/components/ui/card";
 import Button from "../Button";
 import Image from "next/image";
+import React from "react";
+import { findInstructor } from "@/app/actions/findInstructor";
+import { UserType } from "@/types/user";
 
 interface CourseProps {
     id: string;
     title: string;
     description: string;
     instructor: string;
-    price?: number;
+    price: number;
     thumbnailUrl: string;
     studentsEnrolled: number;
     rating: number;
     videoUrl: string;
-    discount?: number;
+    discount: number;
 }
-
 
 const Course = ({ 
     id,
@@ -35,8 +39,16 @@ const Course = ({
     videoUrl,
     discount
 }: CourseProps) => {
+    const [courseInstructor, setCourseInstructor] = React.useState<UserType>();
+
+    React.useEffect(() => {
+        findInstructor(instructor).then((data) => {
+            setCourseInstructor(data as any);
+        });
+    }, [instructor]);
+
     return (
-        <Card className="sm:w-[35vw] lg:w-full p-4 shadow-sm shadow-lightblue">
+        <Card className="w-full max-w-[35vw] sm:max-w-full p-4 shadow-sm shadow-lightblue">
             <Image
                 alt=""
                 src={thumbnailUrl}
@@ -46,22 +58,21 @@ const Course = ({
             />
             <CardHeader>
                 <CardTitle className="text-xl">{title}</CardTitle>
-                <CardDescription>{description}</CardDescription>
+                <CardDescription className="text-sm">{description}</CardDescription>
             </CardHeader>
             <CardContent>
-                <div className="w-full flex items-center justify-between">
+                <div className="w-full flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
                     <div>
-                        <div>By <span className="font-semibold">{instructor}</span></div>
+                        <div>By <span className="font-semibold">{courseInstructor?.name}</span></div>
                     </div>
                     <div className="flex flex-col">
-                        <div className="text-2xl font-semibold">${price}</div>
-                        <div className="line-through flex justify-end">$100</div>
+                        <div className="text-2xl font-semibold">${price-(discount/100)}</div>
+                        <div className="line-through flex justify-center sm:justify-end">${price}</div>
                     </div>
                 </div>
             </CardContent>
-            <CardFooter className="w-full flex items-center justify-between gap-2">
+            <CardFooter className="w-full">
                 <Button content="Enroll Now" className="w-full" />
-                <Button content="View Details" className="w-full" secondary />
             </CardFooter>
         </Card>
     );

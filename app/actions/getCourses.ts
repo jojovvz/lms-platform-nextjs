@@ -5,9 +5,17 @@ export const getCourses = async () => {
         query  {
             getCourses {
                 id
-                title
+                createdAt
                 description
-                video
+                instructor
+                price
+                rating
+                studentsEnrolled
+                title
+                updatedAt
+                video  
+                discount
+                thumbnail
             }
         }
     `;

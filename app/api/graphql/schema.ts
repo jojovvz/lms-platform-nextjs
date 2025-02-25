@@ -18,12 +18,13 @@ export const typeDefs = `#graphql
         description: String!
         instructor: String!
         price: Float
-        thumbnail1: String!
+        thumbnail: String!
         video: String
         studentsEnrolled: Int
         rating: Float
         createdAt: String
         updatedAt: String
+        discount: Int
     }
 
     type Query {
