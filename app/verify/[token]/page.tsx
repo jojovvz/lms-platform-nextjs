@@ -3,6 +3,8 @@ import Register from '@/components/ui/Register'
 import Verify from '@/components/ui/Verify'
 import React from 'react'
 
+export const dynamic = 'force-dynamic';
+
 const page = async ({
   params,
 }: {

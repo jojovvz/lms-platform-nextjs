@@ -2,7 +2,9 @@ import Header from '@/components/layouts/Header'
 import Login from '@/components/ui/Login'
 import React from 'react'
 
-const page = () => {
+export const dynamic = 'force-dynamic';
+
+const Page = () => {
   return (
     <div className="w-full flex flex-col items-center justify-between">
       <Header />
@@ -11,4 +13,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page;

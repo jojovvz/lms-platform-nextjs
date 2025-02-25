@@ -2,6 +2,8 @@ import Header from '@/components/layouts/Header';
 import Onboarding from '@/components/ui/Onboarding';
 import React from 'react'
 
+export const dynamic = 'force-dynamic';
+
 const page = async ({
     params,
   }: {

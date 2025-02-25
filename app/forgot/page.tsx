@@ -1,14 +1,16 @@
-import Header from '@/components/layouts/Header'
-import Forgot from '@/components/ui/Forgot'
-import React from 'react'
+import Header from '@/components/layouts/Header';
+import Forgot from '@/components/ui/Forgot';
+import React from 'react';
 
-const page = () => {
+export const dynamic = "force-dynamic";
+
+const Page = () => {
   return (
     <div className="w-full flex flex-col items-center justify-between">
-        <Header />
+      <Header />
       <Forgot />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;

@@ -19,14 +19,13 @@ const Explore = () => {
             id={course.id}
             title={course.title}
             description={course.description}
-            video={course.video as any}
+            videoUrl={course.video as any}
             thumbnailUrl={course.thumbnail}
             price={course.price}
-            discount={course.discount}
+            discount={course.discount as any}
             studentsEnrolled={course.studentsEnrolled as any}
             rating={course.rating as any} 
-            createdAt={course.createdAt as any}
-            updatedAt={course.updatedAt as any}
+            instructor={course.instructor}
            />
         ))}
       </div>

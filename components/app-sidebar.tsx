@@ -125,7 +125,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   useEffect(() => {
     const fetchUser = async () => {
       const data = await getCurrentUser();
-      setUser(data);
+      setUser(data as any);
     };
     fetchUser();
   }, []);

@@ -1,7 +1,8 @@
 import Header from '@/components/layouts/Header'
 import ResetPassword from '@/components/ui/Reset'
-import Verify from '@/components/ui/Verify'
 import React from 'react'
+
+export const dynamic = 'force-dynamic';
 
 const page = async ({
   params,
