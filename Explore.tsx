@@ -16,7 +16,7 @@ const Explore = () => {
   console.log(courses);
   return (
     <div className="w-full py-10 px-5">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {courses.length > 0 ? courses.map((course) => (
           <Course
             id={course.id}

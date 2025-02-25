@@ -9,7 +9,7 @@ const HeroImage = () => {
         src={HeroImageUrl}
         width={900}
         height={500}
-        className='flex items-center justify-center rounded-xl'
+        className='md:flex hidden items-center justify-center rounded-xl'
      />
   )
 }

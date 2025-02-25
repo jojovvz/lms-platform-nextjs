@@ -48,7 +48,7 @@ const Course = ({
     }, [instructor]);
 
     return (
-        <Card className="w-full max-w-[35vw] sm:max-w-full p-4 shadow-sm shadow-lightblue">
+        <Card className="w-full md:max-w-[35vw] sm:max-w-full p-4 shadow-sm shadow-lightblue">
             <Image
                 alt=""
                 src={thumbnailUrl}
