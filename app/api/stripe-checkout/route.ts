@@ -20,7 +20,7 @@ export async function POST(req: Request) {
         },
       ],
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_URL}/courses/1`,
+      success_url: `${process.env.NEXT_PUBLIC_URL}/course/1`,
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/?canceled=true`,
     });
     return NextResponse.json({ url: session.url });
