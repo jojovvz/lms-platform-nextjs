@@ -14,7 +14,6 @@ export async function POST(req: Request) {
             product_data: {
               name: name,
             },
-            // Ensure the amount is in cents:
             unit_amount: price * 100,
           },
           quantity: 1,
@@ -24,7 +23,6 @@ export async function POST(req: Request) {
       success_url: `${process.env.NEXT_PUBLIC_URL}/dashboard?tab="my courses"`,
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/?canceled=true`,
     });
-    // Return the session URL as JSON instead of redirecting
     return NextResponse.json({ url: session.url });
   } catch (err: any) {
     return NextResponse.json(
