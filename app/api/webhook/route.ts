@@ -4,9 +4,9 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
 
-export async function POST(requset: Request) {
-    const body = await requset.text();
-    const signature = (await headers()).get('Stripe-Signature' as string);
+export async function POST(request: Request) {
+    const body = await request.text();
+    const signature = request.headers.get("Stripe-Signature") as string;
 
     let event: Stripe.Event;
 
