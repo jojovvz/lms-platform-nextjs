@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  const event: Stripe.Event = request.body;
+  const event: any = request.body;
 
   // Handle the event
   switch (event.type) {
