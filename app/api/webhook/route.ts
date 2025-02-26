@@ -26,4 +26,6 @@ export async function POST(request: Request) {
         console.log(`🔔 Payment received!`);
         console.log("Data: ", session);  
     }
+
+    return NextResponse.json({ received: true });
 }
