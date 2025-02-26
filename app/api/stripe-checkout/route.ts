@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 
 export async function POST(req: Request) {
-  const { price, name, courseId } = await req.json();
+  const { price, name } = await req.json();
 
   try {
     const session = await stripe.checkout.sessions.create({

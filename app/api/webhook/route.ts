@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
     const session = event.data.object as Stripe.Checkout.Session;
 
-    if (event.type === 'checkout.session.completed') {
+    if (event.type === 'payment_intent.succeeded') {
         console.log(`🔔 Payment received!`);
         console.log("Data: ", session);  
     }
