@@ -13,6 +13,7 @@ import {
 import Explore from "@/Explore"
 import useTabStore from "@/store/tab"
 import { useRouter, useSearchParams } from "next/navigation"
+import MyCourses from '@/components/ui/MyCourses'
 
 function DashboardContent() {
   const { mainTab, setMainTab } = useTabStore();
@@ -30,8 +31,8 @@ function DashboardContent() {
 
   if (mainTab === 'explore') {
     body = <Explore />;
-  } else if (mainTab === 'my+courses') {
-    body = <div>Courses</div>;
+  } else if (mainTab === 'my courses') {
+    body = <MyCourses />
   } else if (mainTab === 'assignments') {
     body = <div>Assignments</div>;
   } else if (mainTab === 'certificates') {

@@ -1,0 +1,41 @@
+'use client'
+
+import React from "react";
+import { getMyCourses } from "@/app/actions/getMyCourses";
+import { CourseType } from "@/types/course";
+import Loader from "@/components/ui/Loader";
+import MyCourse from "./MyCourse";
+
+const MyCourses = () => {
+  const [courses, setCourses] = React.useState<CourseType[]>([]);
+
+  React.useEffect(() => {
+    getMyCourses().then((data) => {
+      setCourses(data);
+    });
+  }, []);
+  console.log("My Courses: ", courses);
+  return (
+    <div className="w-full py-10 px-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {courses.length > 0 ? courses.map((course) => (
+          <MyCourse
+            id={course.id}
+            title={course.title}
+            description={course.description}
+            videoUrl={course.video as any}
+            thumbnailUrl={course.thumbnail || ""}
+            price={course.price as any}
+            discount={course.discount as any}
+            studentsEnrolled={course.studentsEnrolled as any}
+            rating={course.rating as any} 
+            instructor={course.instructor}
+            key={course.id}
+           />
+        )) : <div className="w-full flex justify-center items-center"><Loader /></div>}
+      </div>
+    </div>
+  );
+};
+
+export default MyCourses;

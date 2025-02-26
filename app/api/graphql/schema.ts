@@ -30,6 +30,7 @@ export const typeDefs = `#graphql
     type Query {
         getUser(id: ID!): User
         getCourses: [Course]
+        getMyCourses(userId: String): [Course]
     }
 
     type Mutation {

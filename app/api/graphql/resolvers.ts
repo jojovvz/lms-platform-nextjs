@@ -15,6 +15,16 @@ export const resolvers = {
             
             return allCourses
         },
+        getMyCourses: async (
+            _: unknown,
+            args: { userId: string }
+        ) => {
+            const allCourses = await db.select()
+                .from(courses)
+                .where(eq(courses.instructor, args.userId));
+            
+            return allCourses
+        }
     },
     Mutation: {
         createUser: async (

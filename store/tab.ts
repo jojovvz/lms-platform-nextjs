@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 interface TabStore {
-    mainTab: "explore" | "my+courses" | "assignments" | "certificates" | "discussions" | "profile" | "create";
+    mainTab: "explore" | "my courses" | "assignments" | "certificates" | "discussions" | "profile" | "create";
     subTab: string | null;
     setMainTab: (mainTab: TabStore["mainTab"]) => void;
     setSubTab: (subTab: string | null) => void;

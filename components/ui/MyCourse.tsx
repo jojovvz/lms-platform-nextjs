@@ -13,7 +13,8 @@ import Image from "next/image";
 import React from "react";
 import { findInstructor } from "@/app/actions/findInstructor";
 import { UserType } from "@/types/user";
-import { payNow } from "@/app/actions/payNow";
+import { MoreHorizontal } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 interface CourseProps {
     id: string;
@@ -28,7 +29,7 @@ interface CourseProps {
     discount: number;
 }
 
-const Course = ({ 
+const MyCourse = ({ 
     id,
     title, 
     description, 
@@ -48,10 +49,23 @@ const Course = ({
         });
     }, [instructor]);
 
-    const discountedPrice = price - (price * discount / 100);
-
     return (
-        <Card className="w-full md:max-w-[35vw] sm:max-w-full p-4 shadow-sm shadow-lightblue">
+        <Card className="w-full md:max-w-[35vw] sm:max-w-full p-4 shadow-sm shadow-lightblue relative">
+            <div className="absolute top-3 right-3">
+                <DropdownMenu>
+                    <DropdownMenuTrigger>
+                        <MoreHorizontal className="cursor-pointer" />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuItem onClick={() => console.log("Edit course", id)}>
+                            Edit Course
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => console.log("Delete course", id)} className="text-red-500">
+                            Delete Course
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </div>
             <Image
                 alt=""
                 src={thumbnailUrl}
@@ -69,20 +83,16 @@ const Course = ({
                         <div>By <span className="font-semibold">{courseInstructor?.name}</span></div>
                     </div>
                     <div className="flex flex-col">
-                        <div className="text-2xl font-semibold">${discountedPrice}</div>
+                        <div className="text-2xl font-semibold">${price-(discount/100)}</div>
                         <div className="line-through flex justify-center sm:justify-end">${price}</div>
                     </div>
                 </div>
             </CardContent>
             <CardFooter className="w-full">
-                <Button
-                    content="Enroll Now"
-                    className="w-full"
-                    onClick={async() => await payNow(discountedPrice, title, id)}
-                />
+                <Button content="Enroll Now" className="w-full" />
             </CardFooter>
         </Card>
     );
 };
 
-export default Course;
+export default MyCourse;
