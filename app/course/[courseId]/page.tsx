@@ -1,11 +1,8 @@
-import { getTransactionDetails } from '@/app/actions/transaction'
+import Success from '@/components/ui/Success'
 import React from 'react'
 
-const page = async () => {
-  const webhookData = await getTransactionDetails();
-  return (
-    <div>{JSON.stringify(webhookData)}</div>
-  )
+const page = () => {
+  return <Success />
 }
 
 export default page
