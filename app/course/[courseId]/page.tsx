@@ -3,7 +3,7 @@
 import { getTransactionDetails } from '@/app/actions/transaction';
 import React from 'react'
 
-const page = () => {
+const Page = () => {
   const [details, setDetails] = React.useState(null);
 
   React.useEffect(() => {
@@ -20,4 +20,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
