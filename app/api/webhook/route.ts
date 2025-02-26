@@ -3,26 +3,29 @@ import { stripe } from "@/lib/stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
+
 export async function POST(request: Request) {
-  const event: any = request.body;
+    const body = await request.text();
+    const signature = request.headers.get("Stripe-Signature") as string;
 
-  // Handle the event
-  switch (event.type) {
-    case "payment_intent.succeeded":
-      const paymentIntent = event.data.object;
-      // Then define and call a method to handle the successful payment intent.
-      // handlePaymentIntentSucceeded(paymentIntent);
-      break;
-    case "payment_method.attached":
-      const paymentMethod = event.data.object;
-      // Then define and call a method to handle the successful attachment of a PaymentMethod.
-      // handlePaymentMethodAttached(paymentMethod);
-      break;
-    // ... handle other event types
-    default:
-      console.log(`Unhandled event type ${event.type}`);
-  }
+    let event: Stripe.Event;
 
-  // Return a response to acknowledge receipt of the event
-  return NextResponse.json({ received: true });
+    try {
+        event = stripe.webhooks.constructEvent(
+            body,
+            signature as any,
+            process.env.STRIPE_WEBHOOK_SECRET!
+        )
+    } catch (error) {
+        return new NextResponse("invalid signature", { status: 400 });
+    }
+
+    const session = event.data.object as Stripe.Checkout.Session;
+
+    if (event.type === 'checkout.session.completed') {
+        console.log(`🔔 Payment received!`);
+        console.log("Data: ", session);  
+    }
+
+    return NextResponse.json({ received: true });
 }
