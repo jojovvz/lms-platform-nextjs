@@ -24,6 +24,6 @@ export async function POST(request: Request) {
 
     if (event.type === 'checkout.session.completed') {
         console.log(`🔔 Payment received!`);
-        console.log("Data: ", session);
+        console.log("Data: ", session);  
     }
 }
