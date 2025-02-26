@@ -31,7 +31,7 @@ export const VerificationEmail = ({ token }: { token: string }) => {
             <Text style={paragraph}>
               Thank you for signing up with courseene. We are excited to have you on board! To get started, please verify your email address by clicking the button below.
             </Text>
-            <Button style={button} href={`${process.env.NEXT_PUBLIC_URL}/verify/${token}`}>
+            <Button style={button} href={`https://lms-platform-nextjs-website.vercel.app/verify/${token}`}>
               Verify Email Address
             </Button>
             <Text style={paragraph}>
