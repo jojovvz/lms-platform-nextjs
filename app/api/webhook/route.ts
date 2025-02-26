@@ -4,23 +4,28 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  const event: any = request.body;
+  const body = await request.text();
+  const signature = request.headers.get("Stripe-Signature") as string;
+  let event: Stripe.Event;
 
-  // Handle the event
+  try {
+    event = stripe.webhooks.constructEvent(
+      body,
+      signature,
+      process.env.STRIPE_WEBHOOK_SECRET!
+    );
+  } catch (error: any) {
+    throw new Error("Webhook Error: " + error.message);
+  }
+
   switch (event.type) {
     case "checkout.session.completed":
       const session = event.data.object;
+      console.log("Session: ", session);
       break;
-    case "payment_method.attached":
-      const paymentMethod = event.data.object;
-      // Then define and call a method to handle the successful attachment of a PaymentMethod.
-      // handlePaymentMethodAttached(paymentMethod);
-      break;
-    // ... handle other event types
     default:
       console.log(`Unhandled event type ${event.type}`);
   }
 
-  // Return a response to acknowledge receipt of the event
   return NextResponse.json({ received: true });
 }
