@@ -1,8 +1,10 @@
+import { getTransactionDetails } from '@/app/actions/transaction'
 import React from 'react'
 
-const page = () => {
+const page = async () => {
+  const webhookData = await getTransactionDetails();
   return (
-    <div>page</div>
+    <div>{JSON.stringify(webhookData)}</div>
   )
 }
 

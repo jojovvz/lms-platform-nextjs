@@ -14,13 +14,13 @@ export async function POST(req: Request) {
             product_data: {
               name: name,
             },
-            unit_amount: price * 100,
+            unit_amount: price,
           },
           quantity: 1,
         },
       ],
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_URL}/dashboard?tab="my courses"`,
+      success_url: `${process.env.NEXT_PUBLIC_URL}/courses/1`,
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/?canceled=true`,
     });
     return NextResponse.json({ url: session.url });
