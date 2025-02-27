@@ -24,7 +24,7 @@ export async function POST(req: Request) {
       success_url: `${process.env.NEXT_PUBLIC_URL}/course/${courseId}`,
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/?canceled=true`,
     });
-    // await getTransactionDetails(courseId);
+    await getTransactionDetails(courseId);
 
     return NextResponse.json({ url: session.url });
   } catch (err: any) {
