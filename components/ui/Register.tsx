@@ -22,6 +22,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Loader from './Loader';
 import { createUser } from '@/app/actions/createUser';
 import { toast } from '@/hooks/use-toast';
+import { socialSignIn } from '@/app/actions/socialLogin';
 
 const Register = () => {
     const {
@@ -47,7 +48,7 @@ const Register = () => {
             toast({
                 title: "Success: User Created Successfully!",
                 description: "User has been created successfully, verify your account, we have sent you an email.",
-            })
+            });
             resetField("email");
             resetField("name");
             resetField("password");
@@ -56,7 +57,7 @@ const Register = () => {
                 title: "Error: Creating User",
                 description: error.message,
                 variant: 'destructive'
-            })
+            });
         } finally {
             setIsLoading(false);
         }
@@ -78,17 +79,21 @@ const Register = () => {
                             Join us by filling out the form below. Sign up to access exclusive features and get started in just a few steps.
                         </CardDescription>
                     </CardHeader>
+                    <div className="w-full flex justify-center px-4 pt-2 pb-2">
+                        <Button
+                            content={
+                                <div className="flex justify-center items-center gap-2">
+                                    <Image alt="" src={Google} width={25} height={25} />
+                                    Sign With Google
+                                </div>
+                            }
+                            secondary
+                            className='w-full'
+                            onClick={async () => await socialSignIn("google")}
+                        />
+                    </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <CardContent className="flex flex-col gap-2">
-                            <Button
-                                content={
-                                    <div className="flex justify-center items-center gap-2">
-                                        <Image alt="" src={Google} width={25} height={25} />
-                                        Sign With Google
-                                    </div>
-                                }
-                                secondary
-                            />
                             <div className="w-full flex justify-center text-lg font-semibold">OR</div>
                             <div className="w-full flex flex-col gap-1">
                                 <Label>Name</Label>
@@ -118,7 +123,7 @@ const Register = () => {
                                 className="w-full"
                                 type="submit"
                                 disabled={isLoading}
-                                disabledText='Registering...'
+                                disabledText="Registering..."
                             />
                             <div>
                                 Already have an account?{' '}
