@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
   timestamp,
   pgTable,
@@ -33,14 +34,26 @@ export const courses = pgTable("course", {
   instructor: varchar("instructor", { length: 255 }).notNull(),
   price: integer("price"),
   discount: integer("discount"),
-  thumbnail: varchar("thumbnailUrl", { length: 255 }).notNull(),
-  video: varchar("videoUrl", { length: 255 }),
+  thumbnail: varchar("thumbnail", { length: 255 }).notNull(),
+  video: varchar("video", { length: 255 }),
   studentsEnrolled: integer("studentsEnrolled"),
   rating: decimal("rating"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+export const payments = pgTable("payment", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  userId: text("userId")
+    .notNull(),
+  courseId: text("courseId")
+    .notNull(),
+  amount: integer("amount").notNull(),
+  status: text("status").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
 
 export const accounts = pgTable("account", {
   userId: text("userId")
@@ -57,6 +70,12 @@ export const accounts = pgTable("account", {
   id_token: text("id_token"),
   session_state: text("session_state"),
 });
+
+export const courseRelations = relations(courses, ({ many }) => ({
+  payments: many(payments, {
+    relationName: "coursePayments",
+  })
+}));
 
 export const sessions = pgTable("session", {
   sessionToken: text("sessionToken").primaryKey(),
