@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server'
 
 import { stripe } from '@/lib/stripe'
+import { getTransactionDetails } from '@/app/actions/transaction';
 
 export async function POST(req: Request) {
-  const { price, name } = await req.json();
+  const { price, name, courseId } = await req.json();
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -23,6 +24,13 @@ export async function POST(req: Request) {
       success_url: `${process.env.NEXT_PUBLIC_URL}/course/1`,
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/?canceled=true`,
     });
+
+    try {
+      await getTransactionDetails(courseId);
+    } catch (error) {
+      throw new Error("Transaction Details API Failed!");
+    }
+
     return NextResponse.json({ url: session.url });
   } catch (err: any) {
     return NextResponse.json(

@@ -1,4 +1,4 @@
-export const getTransactionDetails = async () => {
+export const getTransactionDetails = async (courseId: string) => {
   const response = await fetch(
     "https://lms-platform-nextjs-website.vercel.app/api/webhook",
     {
@@ -6,6 +6,8 @@ export const getTransactionDetails = async () => {
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ courseId
+      }),
     }
   );
 
