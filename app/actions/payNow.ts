@@ -1,6 +1,3 @@
-import { get } from "node:http";
-import { getTransactionDetails } from "./transaction";
-
 export const payNow = async (price: number, name: string, courseId: string) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/stripe-checkout`, {
         method: 'POST',
@@ -16,8 +13,6 @@ export const payNow = async (price: number, name: string, courseId: string) => {
     
     const data = await res.json();
     window.location.href = data.url;
-
-    await getTransactionDetails(courseId);
 };
 
 
