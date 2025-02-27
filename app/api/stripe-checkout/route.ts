@@ -21,7 +21,7 @@ export async function POST(req: Request) {
         },
       ],
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_URL}/course/1`,
+      success_url: `${process.env.NEXT_PUBLIC_URL}/course/${courseId}`,
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/?canceled=true`,
     });
 
