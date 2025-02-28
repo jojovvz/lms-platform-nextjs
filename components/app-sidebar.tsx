@@ -73,44 +73,6 @@ const data = {
         { title: "Completed", url: "#" },
       ],
     },
-    {
-      title: "assignments",
-      url: "#",
-      icon: ClipboardCheck,
-      items: [
-        { title: "Pending", url: "#" },
-        { title: "Submitted", url: "#" },
-        { title: "Graded", url: "#" },
-      ],
-    },
-    {
-      title: "certificates",
-      url: "#",
-      icon: Award,
-      items: [
-        { title: "Earned Certificates", url: "#" },
-        { title: "Download", url: "#" },
-      ],
-    },
-    {
-      title: "discussions",
-      url: "#",
-      icon: MessageCircle,
-      items: [
-        { title: "Community", url: "#" },
-        { title: "Course Discussions", url: "#" },
-      ],
-    },
-    {
-      title: "profile",
-      url: "#",
-      icon: User,
-      items: [
-        { title: "Edit Profile", url: "#" },
-        { title: "Preferences", url: "#" },
-        { title: "Notifications", url: "#" },
-      ],
-    },
   ],
   projects: [
     { name: "Design Engineering", url: "#", icon: Frame },
