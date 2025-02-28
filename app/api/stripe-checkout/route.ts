@@ -24,23 +24,6 @@ export async function POST(req: Request) {
       success_url: `${process.env.NEXT_PUBLIC_URL}/course/${courseId}`,
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/?canceled=true`,
     });
-    const response = await fetch(
-      "https://lms-platform-nextjs-website.vercel.app/api/webhook",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ courseId }),
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("webhook API Failed!");
-    }
-
-    const webhookData = await response.json();
-    console.log(webhookData);
 
     return NextResponse.json({ url: session.url });
   } catch (err: any) {
