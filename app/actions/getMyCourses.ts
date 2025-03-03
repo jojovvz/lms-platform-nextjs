@@ -24,7 +24,7 @@ export const getMyCourses = async () => {
   }
 `;
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/graphql`, {
+  const response = await fetch(`https://lms-platform-nextjs-website.vercel.app/api/graphql`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ query }),

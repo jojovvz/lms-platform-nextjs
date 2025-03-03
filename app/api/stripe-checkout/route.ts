@@ -25,6 +25,7 @@ export async function POST(req: Request) {
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/?canceled=true`,
     });
 
+
     return NextResponse.json({ url: session.url });
   } catch (err: any) {
     return NextResponse.json(
