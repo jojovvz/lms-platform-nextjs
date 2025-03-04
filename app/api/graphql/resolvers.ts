@@ -1,7 +1,6 @@
 import { db } from "@/drizzle/client";
 import { courses, users, verificationTokens } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
-import { NextResponse } from "next/server";
 import bcrypt from 'bcryptjs';
 import { generateVerificationToken } from "@/lib/token";
 import { sendVerificationEmail } from "@/app/actions/verification-email";
@@ -117,7 +116,6 @@ export const resolvers = {
             args: { password: string, token: string }
         ) => {
             try {
-                // Check if the token exists
                 const verificationToken = await db
                     .select()
                     .from(verificationTokens)
@@ -127,10 +125,8 @@ export const resolvers = {
                     throw new Error("Invalid or expired token.");
                 }
         
-                // Hash the new password with a cost factor of 12
                 const hashedPassword = await bcrypt.hash(args.password, 12);
         
-                // Update the user's password
                 const updatedUser = await db
                     .update(users)
                     .set({ password: hashedPassword })
@@ -141,7 +137,6 @@ export const resolvers = {
                     throw new Error("Failed to update password.");
                 }
         
-                // Delete the used verification token
                 await db
                     .delete(verificationTokens)
                     .where(eq(verificationTokens.id, verificationToken[0].id));
