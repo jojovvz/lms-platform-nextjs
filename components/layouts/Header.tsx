@@ -8,7 +8,7 @@ import MobileMenu from '../ui/MobileMenu';
 const Header = async () => {
     const user = await getCurrentUser();
     return (
-        <div className='w-full flex justify-between items-center md:px-[10vw] px-[5vw] py-4'>
+        <div className='w-full flex justify-between items-center md:px-[10vw] px-[5vw] py-4 bg-transparent'>
             <div className='flex items-center gap-16'>
                 <div className='text-lightblue font-semibold text-3xl tracking-tighter flex items-center gap-1 lowercase'>COURSEENE</div>
                 <div className='hidden md:flex items-center gap-3'>
